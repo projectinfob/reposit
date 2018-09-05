@@ -1,20 +1,39 @@
 # -*- coding: utf-8 -*-
-import redis
 import os
 import telebot
-# import some_api_lib
-# import ...
+import time
+import chlenomerconfig
+import telebot
+import random
+from telebot import types
+from pymongo import MongoClient
+import threading
 
-# Example of your code beginning
-#           Config vars
-token = os.environ['TELEGRAM_TOKEN']
-some_api_token = os.environ['SOME_API_TOKEN']
-#             ...
+client1=os.environ['database']
+client=MongoClient(client1)
+db=client.infobase
 
-# If you use redis, install this add-on https://elements.heroku.com/addons/heroku-redis
-r = redis.from_url(os.environ.get("REDIS_URL"))
+    
 
-#       Your bot code below
-# bot = telebot.TeleBot(token)
-# some_api = some_api_lib.connect(some_api_token)
-#              ...
+
+
+
+    
+    
+
+if True:
+ try:
+   print('bot is working')
+   bot.polling(none_stop=True,timeout=600)
+ except (requests.ReadTimeout):
+        print('!!! READTIME OUT !!!')           
+        bot.stop_polling()
+        time.sleep(1)
+        check = True
+        while check==True:
+          try:
+            bot.polling(none_stop=True,timeout=1)
+            print('checkkk')
+            check = False
+          except (requests.exceptions.ConnectionError):
+            time.sleep(1)                    
