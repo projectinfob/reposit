@@ -20,6 +20,8 @@ channels=db.channels
     
 @bot.message_handler(commands=['start'])
 def start(m):
+    if users.find_one({'id':m.from_user.id}) is None:
+         users.insert_one(createuser(m.from_user.id,m.from_user.first_name,m.from_user.username))
     if m.from_user.id==m.chat.id:
         kb=types.ReplyKeyboardMarkup()
         kb.add(types.ReplyKeyboardButton('📮ПРОДАТЬ РЕКЛАМУ'))
@@ -93,6 +95,14 @@ def showchannels(user, y):
     return text
     
     
+def createuser(id,name,username): 
+   return{'id':id,
+          'name':name,
+          'username':username
+         }
+      
+      
+      
 
 if True:
    print('bot is working')
